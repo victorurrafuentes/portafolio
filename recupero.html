@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.11.9">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Seguimiento de recupero de cartera castigada – Víctor · Modelamiento de riesgo</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/scrollable-regions/scrollable-regions.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-447e42e69aaa9833c0ba1b986f430b20.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-1587712e6f16501fd4d5a4607ffcfc60.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No se han encontrado resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script>
+<link href="site_libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet">
+
+<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+
+<script src="site_libs/plotly-binding-4.12.1/plotly.js"></script>
+
+<script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
+
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+
+<link href="site_libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet">
+
+<script src="site_libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
+
+<link href="site_libs/plotly-htmlwidgets-css-2.25.2/plotly-htmlwidgets.css" rel="stylesheet">
+
+<script src="site_libs/plotly-main-2.25.2/plotly-latest.min.js"></script>
+
+<link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+
+<script src="site_libs/datatables-binding-0.34.0/datatables.js"></script>
+
+<link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
+
+<link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet">
+
+<script src="site_libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
+
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Saltar al contenido principal</a>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark" aria-label="Sitio web">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Víctor · Modelamiento de riesgo</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Navegación de palanca" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Inicio</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./recupero.html" aria-current="page"> 
+<span class="menu-text">Seguimiento de recupero</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+            <div id="quarto-search" class="" title="Buscar"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" aria-labelledby="toc-title" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul>
+  <li><a href="#resumen" id="toc-resumen" class="nav-link active" data-scroll-target="#resumen">Resumen</a></li>
+  <li><a href="#pagos-y-recuperación" id="toc-pagos-y-recuperación" class="nav-link" data-scroll-target="#pagos-y-recuperación">Pagos y recuperación</a></li>
+  <li><a href="#estabilidad-de-variables" id="toc-estabilidad-de-variables" class="nav-link" data-scroll-target="#estabilidad-de-variables">Estabilidad de variables</a></li>
+  <li><a href="#poder-del-modelo" id="toc-poder-del-modelo" class="nav-link" data-scroll-target="#poder-del-modelo">Poder del modelo</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content" tabindex="-1">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Seguimiento de recupero de cartera castigada</h1>
+<p class="subtitle lead">Reporte mensual generado con datos simulados</p>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-left">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><span class="etiqueta">Datos simulados</span></p>
+<p>Este reporte compara <strong>M21</strong> (seguimiento) con el periodo base de entrenamiento. Se genera con un comando; para otro mes basta cambiar <code>REPORTE_MES</code>.</p>
+<section id="resumen" class="level2">
+<h2 class="anchored" data-anchor-id="resumen">Resumen</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div class="tarjetas">
+  <div class="tarjeta">
+    <div class="tarjeta-etiqueta">Monto recuperado, M21</div>
+    <div class="tarjeta-valor">78,3 MM</div>
+    <div class="tarjeta-detalle baja">99,5% del promedio base (78,7 MM)</div>
+  </div>
+  <div class="tarjeta">
+    <div class="tarjeta-etiqueta">Tasa de pago, M21</div>
+    <div class="tarjeta-valor">9,7%</div>
+    <div class="tarjeta-detalle baja">95,1% del promedio base (10,2%)</div>
+  </div>
+  <div class="tarjeta">
+    <div class="tarjeta-etiqueta">Recuperado / deuda, M21</div>
+    <div class="tarjeta-valor">2,70%</div>
+    <div class="tarjeta-detalle sube">102,0% del promedio base (2,64%)</div>
+  </div>
+</div>
+</div>
+</div>
+<ul>
+<li><strong>Recuperación:</strong> el monto recuperado fue 99,5% del promedio mensual base y la tasa de pago, 95,1%.</li>
+<li><strong>Estabilidad:</strong> variables con PSI sobre 0,25: <strong>ext_03</strong>. Entre 0,10 y 0,25: ext_02, mor_01.</li>
+<li><strong>Poder del modelo:</strong> Gini de 47,2% contra 53,4% del periodo base (-6,2 puntos).</li>
+</ul>
+</section>
+<section id="pagos-y-recuperación" class="level2">
+<h2 class="anchored" data-anchor-id="pagos-y-recuperación">Pagos y recuperación</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-362311489e9e272b3716" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-362311489e9e272b3716">{"x":{"visdat":{"f043dfc50e5":["function () ","plotlyVisDat"],"f04100f4412":["function () ","data"],"f047f23f49":["function () ","data"]},"cur_data":"f047f23f49","attrs":{"f04100f4412":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"scatter","mode":"lines+markers","name":"Periodo base","line":{"color":"#7f8db0","width":2.5,"dash":"dot"},"marker":{"color":"#7f8db0","size":6},"hovertemplate":"Veintil %{x}<br>Periodo base: %{y:.1%}<extra><\/extra>","inherit":true},"f047f23f49":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"scatter","mode":"lines+markers","name":"M21","line":{"color":"#a487ff","width":2.7999999999999998},"marker":{"color":"#a487ff","size":7},"hovertemplate":"Veintil %{x}<br>M21: %{y:.1%}<extra><\/extra>","inherit":true}},"layout":{"margin":{"b":40,"l":8,"t":50,"r":16},"title":{"text":"Tasa de pago a 90 días por veintil","x":0.01,"xanchor":"left","font":{"color":"#ece9f8","size":15,"family":"Space Grotesk, system-ui, sans-serif"}},"paper_bgcolor":"rgba(0,0,0,0)","plot_bgcolor":"rgba(0,0,0,0)","font":{"color":"#9e97bf","family":"Space Grotesk, system-ui, sans-serif"},"xaxis":{"domain":[0,1],"automargin":true,"title":{"text":"Veintil","font":{"size":12}},"gridcolor":"#2d2653","zerolinecolor":"#2d2653","linecolor":"#2d2653","tickfont":{"size":11},"dtick":1,"range":[0.5,20.5]},"yaxis":{"domain":[0,1],"automargin":true,"title":{"text":"Tasa de pago","font":{"size":12}},"gridcolor":"#2d2653","zerolinecolor":"#2d2653","linecolor":"#2d2653","tickfont":{"size":11},"tickformat":".0%"},"legend":{"orientation":"h","x":0,"y":-0.28000000000000003,"font":{"size":12}},"hoverlabel":{"bgcolor":"#181331","font":{"color":"#ece9f8"}},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false,"displayModeBar":false},"data":[{"x":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],"y":[0.0041666666666666666,0.011666666666666667,0.02,0.026249999999999999,0.027083333333333334,0.041666666666666664,0.036249999999999998,0.049583333333333333,0.052499999999999998,0.060833333333333336,0.083333333333333329,0.077916666666666662,0.10583333333333333,0.12416666666666666,0.11958333333333333,0.15125,0.17958333333333334,0.23041666666666666,0.26916666666666667,0.37333333333333335],"type":"scatter","mode":"lines+markers","name":"Periodo base","line":{"color":"#7f8db0","width":2.5,"dash":"dot"},"marker":{"color":"#7f8db0","size":6,"line":{"color":"rgba(31,119,180,1)"}},"hovertemplate":["Veintil %{x}<br>Periodo base: %{y:.1%}<extra><\/extra>","Veintil %{x}<br>Periodo base: %{y:.1%}<extra><\/extra>","Veintil %{x}<br>Periodo base: %{y:.1%}<extra><\/extra>","Veintil %{x}<br>Periodo base: %{y:.1%}<extra><\/extra>","Veintil %{x}<br>Periodo base: %{y:.1%}<extra><\/extra>","Veintil %{x}<br>Periodo base: %{y:.1%}<extra><\/extra>","Veintil %{x}<br>Periodo base: %{y:.1%}<extra><\/extra>","Veintil %{x}<br>Periodo base: %{y:.1%}<extra><\/extra>","Veintil %{x}<br>Periodo base: %{y:.1%}<extra><\/extra>","Veintil %{x}<br>Periodo base: %{y:.1%}<extra><\/extra>","Veintil %{x}<br>Periodo base: %{y:.1%}<extra><\/extra>","Veintil %{x}<br>Periodo base: %{y:.1%}<extra><\/extra>","Veintil %{x}<br>Periodo base: %{y:.1%}<extra><\/extra>","Veintil %{x}<br>Periodo base: %{y:.1%}<extra><\/extra>","Veintil %{x}<br>Periodo base: %{y:.1%}<extra><\/extra>","Veintil %{x}<br>Periodo base: %{y:.1%}<extra><\/extra>","Veintil %{x}<br>Periodo base: %{y:.1%}<extra><\/extra>","Veintil %{x}<br>Periodo base: %{y:.1%}<extra><\/extra>","Veintil %{x}<br>Periodo base: %{y:.1%}<extra><\/extra>","Veintil %{x}<br>Periodo base: %{y:.1%}<extra><\/extra>"],"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],"y":[0.014999999999999999,0.025000000000000001,0.01,0.040000000000000001,0.040000000000000001,0.050000000000000003,0.044999999999999998,0.040000000000000001,0.070000000000000007,0.074999999999999997,0.074999999999999997,0.035000000000000003,0.089999999999999997,0.11,0.125,0.17499999999999999,0.19500000000000001,0.20000000000000001,0.20999999999999999,0.32000000000000001],"type":"scatter","mode":"lines+markers","name":"M21","line":{"color":"#a487ff","width":2.7999999999999998},"marker":{"color":"#a487ff","size":7,"line":{"color":"rgba(255,127,14,1)"}},"hovertemplate":["Veintil %{x}<br>M21: %{y:.1%}<extra><\/extra>","Veintil %{x}<br>M21: %{y:.1%}<extra><\/extra>","Veintil %{x}<br>M21: %{y:.1%}<extra><\/extra>","Veintil %{x}<br>M21: %{y:.1%}<extra><\/extra>","Veintil %{x}<br>M21: %{y:.1%}<extra><\/extra>","Veintil %{x}<br>M21: %{y:.1%}<extra><\/extra>","Veintil %{x}<br>M21: %{y:.1%}<extra><\/extra>","Veintil %{x}<br>M21: %{y:.1%}<extra><\/extra>","Veintil %{x}<br>M21: %{y:.1%}<extra><\/extra>","Veintil %{x}<br>M21: %{y:.1%}<extra><\/extra>","Veintil %{x}<br>M21: %{y:.1%}<extra><\/extra>","Veintil %{x}<br>M21: %{y:.1%}<extra><\/extra>","Veintil %{x}<br>M21: %{y:.1%}<extra><\/extra>","Veintil %{x}<br>M21: %{y:.1%}<extra><\/extra>","Veintil %{x}<br>M21: %{y:.1%}<extra><\/extra>","Veintil %{x}<br>M21: %{y:.1%}<extra><\/extra>","Veintil %{x}<br>M21: %{y:.1%}<extra><\/extra>","Veintil %{x}<br>M21: %{y:.1%}<extra><\/extra>","Veintil %{x}<br>M21: %{y:.1%}<extra><\/extra>","Veintil %{x}<br>M21: %{y:.1%}<extra><\/extra>"],"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-c60d3db392cde4f40289" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-c60d3db392cde4f40289">{"x":{"visdat":{"f044b5b4346":["function () ","plotlyVisDat"]},"cur_data":"f044b5b4346","attrs":{"f044b5b4346":{"x":{},"y":{},"mode":"lines+markers","line":{"color":"#a487ff","width":2.7999999999999998},"marker":{"color":"#a487ff","size":7},"text":{},"hovertemplate":"%{text}: %{y:.1f} MM<extra><\/extra>","name":"Monto recuperado","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"},"f044b5b4346.1":{"x":[1,21],"y":[78.67412625,78.67412625],"type":"scatter","mode":"lines","name":"Promedio mensual base","line":{"color":"#7f8db0","width":2,"dash":"dash"},"hovertemplate":"Promedio base: %{y:.1f} MM<extra><\/extra>","inherit":false}},"layout":{"margin":{"b":40,"l":8,"t":50,"r":16},"title":{"text":"Evolución mensual del monto recuperado","x":0.01,"xanchor":"left","font":{"color":"#ece9f8","size":15,"family":"Space Grotesk, system-ui, sans-serif"}},"paper_bgcolor":"rgba(0,0,0,0)","plot_bgcolor":"rgba(0,0,0,0)","font":{"color":"#9e97bf","family":"Space Grotesk, system-ui, sans-serif"},"xaxis":{"domain":[0,1],"automargin":true,"title":{"text":[],"font":{"size":12}},"gridcolor":"#2d2653","zerolinecolor":"#2d2653","linecolor":"#2d2653","tickfont":{"size":11},"tickmode":"array","tickvals":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21],"ticktext":["M01","M02","M03","M04","M05","M06","M07","M08","M09","M10","M11","M12","M13","M14","M15","M16","M17","M18","M19","M20","M21"]},"yaxis":{"domain":[0,1],"automargin":true,"title":{"text":"Monto recuperado (MM)","font":{"size":12}},"gridcolor":"#2d2653","zerolinecolor":"#2d2653","linecolor":"#2d2653","tickfont":{"size":11},"rangemode":"tozero"},"legend":{"orientation":"h","x":0,"y":-0.28000000000000003,"font":{"size":12}},"hoverlabel":{"bgcolor":"#181331","font":{"color":"#ece9f8"}},"shapes":[{"type":"line","x0":12.5,"x1":12.5,"y0":0,"y1":1,"yref":"paper","line":{"color":"#2d2653","width":1.5,"dash":"dot"}},{"type":"line","x0":15.5,"x1":15.5,"y0":0,"y1":1,"yref":"paper","line":{"color":"#2d2653","width":1.5,"dash":"dot"}}],"annotations":[{"x":12.65,"y":1,"yref":"paper","text":"Validación","showarrow":false,"xanchor":"left","yanchor":"bottom","font":{"size":11,"color":"#9e97bf"}},{"x":15.65,"y":1,"yref":"paper","text":"Seguimiento","showarrow":false,"xanchor":"left","yanchor":"bottom","font":{"size":11,"color":"#9e97bf"}}],"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false,"displayModeBar":false},"data":[{"x":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21],"y":[78.018659999999997,87.374402000000003,74.219258999999994,80.19323,69.461646999999999,78.413668999999999,82.001424,72.915000000000006,69.973930999999993,90.458132000000006,80.318938000000003,80.741223000000005,83.238237999999996,84.993448000000001,72.191500000000005,80.543937,67.175289000000006,71.923580999999999,73.508641999999995,81.054670999999999,78.278630000000007],"mode":"lines+markers","line":{"color":"#a487ff","width":2.7999999999999998},"marker":{"color":"#a487ff","size":7,"line":{"color":"rgba(31,119,180,1)"}},"text":["M01","M02","M03","M04","M05","M06","M07","M08","M09","M10","M11","M12","M13","M14","M15","M16","M17","M18","M19","M20","M21"],"hovertemplate":["%{text}: %{y:.1f} MM<extra><\/extra>","%{text}: %{y:.1f} MM<extra><\/extra>","%{text}: %{y:.1f} MM<extra><\/extra>","%{text}: %{y:.1f} MM<extra><\/extra>","%{text}: %{y:.1f} MM<extra><\/extra>","%{text}: %{y:.1f} MM<extra><\/extra>","%{text}: %{y:.1f} MM<extra><\/extra>","%{text}: %{y:.1f} MM<extra><\/extra>","%{text}: %{y:.1f} MM<extra><\/extra>","%{text}: %{y:.1f} MM<extra><\/extra>","%{text}: %{y:.1f} MM<extra><\/extra>","%{text}: %{y:.1f} MM<extra><\/extra>","%{text}: %{y:.1f} MM<extra><\/extra>","%{text}: %{y:.1f} MM<extra><\/extra>","%{text}: %{y:.1f} MM<extra><\/extra>","%{text}: %{y:.1f} MM<extra><\/extra>","%{text}: %{y:.1f} MM<extra><\/extra>","%{text}: %{y:.1f} MM<extra><\/extra>","%{text}: %{y:.1f} MM<extra><\/extra>","%{text}: %{y:.1f} MM<extra><\/extra>","%{text}: %{y:.1f} MM<extra><\/extra>"],"name":"Monto recuperado","type":"scatter","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[1,21],"y":[78.67412625,78.67412625],"type":"scatter","mode":"lines","name":"Promedio mensual base","line":{"color":"#7f8db0","width":2,"dash":"dash"},"hovertemplate":["Promedio base: %{y:.1f} MM<extra><\/extra>","Promedio base: %{y:.1f} MM<extra><\/extra>"],"marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="estabilidad-de-variables" class="level2">
+<h2 class="anchored" data-anchor-id="estabilidad-de-variables">Estabilidad de variables</h2>
+<p>PSI por variable y mes. Verde bajo 0,10; ámbar hasta 0,25; rojo sobre 0,25.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-2cb3065f4ba824fbb1bd" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-2cb3065f4ba824fbb1bd">{"x":{"filter":"none","vertical":false,"data":[["ext_01","ext_02","ext_03","ext_04","ext_05","mor_01","mor_02","pag_01","pag_02","pag_03"],["Información externa","Información externa","Información externa","Información externa","Información externa","Morosidad","Morosidad","Historial de pagos","Historial de pagos","Historial de pagos"],[0.001893447868629334,0.001428855201712071,0.00198666033664997,0.00215946505763491,0.001412050387648864,0.00119672252862375,0.001356982454358559,0.002044152820661717,0.00287902663579911,0.002906710026574746],[0.001797490238831156,0.001638303875677123,0.002327605968516809,0.002835745424827256,0.004191564006781655,0.00295160449640863,0.0009600695793566068,0.0005921696410744876,0.001537914099537313,0.001812656021862517],[0.003686591141842997,0.001956123163481418,0.004005475170829246,0.00304013702213342,0.002684889447692991,0.002933407667324917,0.001008694925148063,0.0007255602950920438,0.001558511981541287,0.003888207041112945],[0.004234919497132669,0.01051929677620435,0.005516096888601729,0.002246550812320935,0.004091333269506611,0.008613389066865824,0.003560145282573073,0.001464387111833677,0.0006323188818517262,0.004037416031899683],[0.002162368601393137,0.02283636971998856,0.04327036951516083,0.002454654309982984,0.0009550863664108224,0.02623881077192854,0.001996775443074816,0.004686158713841223,0.001853839054831114,0.00495868060156509],[0.002582841981784538,0.0499773519646698,0.07555145015484639,0.00187076188065234,0.003847392668125857,0.03689592011940766,0.001389216576459913,0.01433309187584253,0.002543357789590198,0.01407289754042212],[0.002850951722213414,0.08709511695771929,0.1382000714252073,0.002144757266718256,0.001016346634385303,0.06681070732579109,0.001987730493413195,0.01638704568490755,0.0018474496016421,0.01440526456299265],[0.004202716034268428,0.1318933443642166,0.2617045786746865,0.003215857903988992,0.002200486777110743,0.09349220248317353,0.003377837005713431,0.03534100832495346,0.00222087352807666,0.03222172310696841],[0.003380692017413734,0.1829369714369636,0.3027386669363818,0.00116210135529548,0.003269642265795341,0.1337590898584534,0.001523892959602273,0.06483316109076057,0.003695166088050901,0.0538192162767788]],"container":"<table class=\"compact\">\n  <thead>\n    <tr>\n      <th>Variable<\/th>\n      <th>Familia<\/th>\n      <th>M13<\/th>\n      <th>M14<\/th>\n      <th>M15<\/th>\n      <th>M16<\/th>\n      <th>M17<\/th>\n      <th>M18<\/th>\n      <th>M19<\/th>\n      <th>M20<\/th>\n      <th>M21<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","paging":false,"ordering":false,"scrollX":true,"columnDefs":[{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \",\", null);\n  }"},{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \",\", null);\n  }"},{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \",\", null);\n  }"},{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \",\", null);\n  }"},{"targets":6,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \",\", null);\n  }"},{"targets":7,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \",\", null);\n  }"},{"targets":8,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \",\", null);\n  }"},{"targets":9,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \",\", null);\n  }"},{"targets":10,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \",\", null);\n  }"},{"className":"dt-right","targets":[2,3,4,5,6,7,8,9,10]},{"name":"Variable","targets":0},{"name":"Familia","targets":1},{"name":"M13","targets":2},{"name":"M14","targets":3},{"name":"M15","targets":4},{"name":"M16","targets":5},{"name":"M17","targets":6},{"name":"M18","targets":7},{"name":"M19","targets":8},{"name":"M20","targets":9},{"name":"M21","targets":10}],"order":[],"autoWidth":false,"orderClasses":false,"rowCallback":"function(row, data, displayNum, displayIndex, dataIndex) {\nvar value=data[2]; $(this.api().cell(row, 2).node()).css({'font-weight':'600','color':isNaN(parseFloat(value)) ? '' : value <= 0.1 ? \"#3ecf8e\" : value <= 0.25 ? \"#f5b83d\" : \"#ff9aa6\",'background-color':isNaN(parseFloat(value)) ? '' : value <= 0.1 ? \"rgba(62,207,142,.18)\" : value <= 0.25 ? \"rgba(245,184,61,.20)\" : \"rgba(239,91,107,.26)\",'text-align':'center'});\nvar value=data[3]; $(this.api().cell(row, 3).node()).css({'font-weight':'600','color':isNaN(parseFloat(value)) ? '' : value <= 0.1 ? \"#3ecf8e\" : value <= 0.25 ? \"#f5b83d\" : \"#ff9aa6\",'background-color':isNaN(parseFloat(value)) ? '' : value <= 0.1 ? \"rgba(62,207,142,.18)\" : value <= 0.25 ? \"rgba(245,184,61,.20)\" : \"rgba(239,91,107,.26)\",'text-align':'center'});\nvar value=data[4]; $(this.api().cell(row, 4).node()).css({'font-weight':'600','color':isNaN(parseFloat(value)) ? '' : value <= 0.1 ? \"#3ecf8e\" : value <= 0.25 ? \"#f5b83d\" : \"#ff9aa6\",'background-color':isNaN(parseFloat(value)) ? '' : value <= 0.1 ? \"rgba(62,207,142,.18)\" : value <= 0.25 ? \"rgba(245,184,61,.20)\" : \"rgba(239,91,107,.26)\",'text-align':'center'});\nvar value=data[5]; $(this.api().cell(row, 5).node()).css({'font-weight':'600','color':isNaN(parseFloat(value)) ? '' : value <= 0.1 ? \"#3ecf8e\" : value <= 0.25 ? \"#f5b83d\" : \"#ff9aa6\",'background-color':isNaN(parseFloat(value)) ? '' : value <= 0.1 ? \"rgba(62,207,142,.18)\" : value <= 0.25 ? \"rgba(245,184,61,.20)\" : \"rgba(239,91,107,.26)\",'text-align':'center'});\nvar value=data[6]; $(this.api().cell(row, 6).node()).css({'font-weight':'600','color':isNaN(parseFloat(value)) ? '' : value <= 0.1 ? \"#3ecf8e\" : value <= 0.25 ? \"#f5b83d\" : \"#ff9aa6\",'background-color':isNaN(parseFloat(value)) ? '' : value <= 0.1 ? \"rgba(62,207,142,.18)\" : value <= 0.25 ? \"rgba(245,184,61,.20)\" : \"rgba(239,91,107,.26)\",'text-align':'center'});\nvar value=data[7]; $(this.api().cell(row, 7).node()).css({'font-weight':'600','color':isNaN(parseFloat(value)) ? '' : value <= 0.1 ? \"#3ecf8e\" : value <= 0.25 ? \"#f5b83d\" : \"#ff9aa6\",'background-color':isNaN(parseFloat(value)) ? '' : value <= 0.1 ? \"rgba(62,207,142,.18)\" : value <= 0.25 ? \"rgba(245,184,61,.20)\" : \"rgba(239,91,107,.26)\",'text-align':'center'});\nvar value=data[8]; $(this.api().cell(row, 8).node()).css({'font-weight':'600','color':isNaN(parseFloat(value)) ? '' : value <= 0.1 ? \"#3ecf8e\" : value <= 0.25 ? \"#f5b83d\" : \"#ff9aa6\",'background-color':isNaN(parseFloat(value)) ? '' : value <= 0.1 ? \"rgba(62,207,142,.18)\" : value <= 0.25 ? \"rgba(245,184,61,.20)\" : \"rgba(239,91,107,.26)\",'text-align':'center'});\nvar value=data[9]; $(this.api().cell(row, 9).node()).css({'font-weight':'600','color':isNaN(parseFloat(value)) ? '' : value <= 0.1 ? \"#3ecf8e\" : value <= 0.25 ? \"#f5b83d\" : \"#ff9aa6\",'background-color':isNaN(parseFloat(value)) ? '' : value <= 0.1 ? \"rgba(62,207,142,.18)\" : value <= 0.25 ? \"rgba(245,184,61,.20)\" : \"rgba(239,91,107,.26)\",'text-align':'center'});\nvar value=data[10]; $(this.api().cell(row, 10).node()).css({'font-weight':'600','color':isNaN(parseFloat(value)) ? '' : value <= 0.1 ? \"#3ecf8e\" : value <= 0.25 ? \"#f5b83d\" : \"#ff9aa6\",'background-color':isNaN(parseFloat(value)) ? '' : value <= 0.1 ? \"rgba(62,207,142,.18)\" : value <= 0.25 ? \"rgba(245,184,61,.20)\" : \"rgba(239,91,107,.26)\",'text-align':'center'});\n}"}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.columnDefs.3.render","options.columnDefs.4.render","options.columnDefs.5.render","options.columnDefs.6.render","options.columnDefs.7.render","options.columnDefs.8.render","options.rowCallback"],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="poder-del-modelo" class="level2">
+<h2 class="anchored" data-anchor-id="poder-del-modelo">Poder del modelo</h2>
+<div class="cell quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-d6859c68bb2d94e8738b" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-d6859c68bb2d94e8738b">{"x":{"visdat":{"f042bed10dd":["function () ","plotlyVisDat"],"f04240338dd":["function () ","data"],"f0412e170cf":["function () ","data"]},"cur_data":"f0412e170cf","attrs":{"f042bed10dd":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":[0,1],"y":[0,1],"type":"scatter","mode":"lines","name":"Modelo aleatorio","hoverinfo":"skip","line":{"color":"#2d2653","width":1.5,"dash":"dash"},"inherit":true},"f04240338dd":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"scatter","mode":"lines","name":"Periodo base","line":{"color":"#7f8db0","width":2.5,"dash":"dot"},"hovertemplate":"FPR %{x:.1%} · TPR %{y:.1%}<extra>Periodo base<\/extra>","inherit":true},"f0412e170cf":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"scatter","mode":"lines","name":"M21","line":{"color":"#a487ff","width":2.7999999999999998},"hovertemplate":"FPR %{x:.1%} · TPR %{y:.1%}<extra>M21<\/extra>","inherit":true}},"layout":{"margin":{"b":40,"l":8,"t":50,"r":16},"title":{"text":"Curva ROC","x":0.01,"xanchor":"left","font":{"color":"#ece9f8","size":15,"family":"Space Grotesk, system-ui, sans-serif"}},"paper_bgcolor":"rgba(0,0,0,0)","plot_bgcolor":"rgba(0,0,0,0)","font":{"color":"#9e97bf","family":"Space Grotesk, system-ui, sans-serif"},"xaxis":{"domain":[0,1],"automargin":true,"title":{"text":"Tasa de falsos positivos","font":{"size":12}},"gridcolor":"#2d2653","zerolinecolor":"#2d2653","linecolor":"#2d2653","tickfont":{"size":11},"range":[0,1],"tickformat":".0%"},"yaxis":{"domain":[0,1],"automargin":true,"title":{"text":"Tasa de verdaderos positivos","font":{"size":12}},"gridcolor":"#2d2653","zerolinecolor":"#2d2653","linecolor":"#2d2653","tickfont":{"size":11},"range":[0,1],"tickformat":".0%"},"legend":{"orientation":"h","x":0,"y":-0.28000000000000003,"font":{"size":12}},"hoverlabel":{"bgcolor":"#181331","font":{"color":"#ece9f8"}},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false,"displayModeBar":false},"data":[{"x":[0,1],"y":[0,1],"type":"scatter","mode":"lines","name":"Modelo aleatorio","hoverinfo":["skip","skip"],"line":{"color":"#2d2653","width":1.5,"dash":"dash"},"marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[0,0.034901260065439865,0.075603926391757365,0.11846471584712134,0.16415659155779361,0.21142644977142461,0.26045993548836238,0.30923815932982157,0.35903743067319516,0.41039147889448402,0.46144385399020721,0.51374933283827995,0.56651892418722294,0.61945095491147051,0.67312556563711046,0.72649850323718468,0.7806836377137818,0.834915183440466,0.8894948135428028,0.94453855614600979,1],"y":[0,0.18259629101283881,0.31424495618504178,0.42694110454452822,0.51477481149378435,0.58875076421438766,0.64723863867943754,0.70796820868147547,0.75973099653556142,0.79783982066435699,0.83859792133686573,0.86835133482779703,0.89402893825147745,0.91828000815162014,0.9360097819441614,0.95638883228041571,0.96963521499898109,0.98247401671082124,0.99225596087222334,0.99796209496637456,1],"type":"scatter","mode":"lines","name":"Periodo base","line":{"color":"#7f8db0","width":2.5,"dash":"dot"},"hovertemplate":["FPR %{x:.1%} · TPR %{y:.1%}<extra>Periodo base<\/extra>","FPR %{x:.1%} · TPR %{y:.1%}<extra>Periodo base<\/extra>","FPR %{x:.1%} · TPR %{y:.1%}<extra>Periodo base<\/extra>","FPR %{x:.1%} · TPR %{y:.1%}<extra>Periodo base<\/extra>","FPR %{x:.1%} · TPR %{y:.1%}<extra>Periodo base<\/extra>","FPR %{x:.1%} · TPR %{y:.1%}<extra>Periodo base<\/extra>","FPR %{x:.1%} · TPR %{y:.1%}<extra>Periodo base<\/extra>","FPR %{x:.1%} · TPR %{y:.1%}<extra>Periodo base<\/extra>","FPR %{x:.1%} · TPR %{y:.1%}<extra>Periodo base<\/extra>","FPR %{x:.1%} · TPR %{y:.1%}<extra>Periodo base<\/extra>","FPR %{x:.1%} · TPR %{y:.1%}<extra>Periodo base<\/extra>","FPR %{x:.1%} · TPR %{y:.1%}<extra>Periodo base<\/extra>","FPR %{x:.1%} · TPR %{y:.1%}<extra>Periodo base<\/extra>","FPR %{x:.1%} · TPR %{y:.1%}<extra>Periodo base<\/extra>","FPR %{x:.1%} · TPR %{y:.1%}<extra>Periodo base<\/extra>","FPR %{x:.1%} · TPR %{y:.1%}<extra>Periodo base<\/extra>","FPR %{x:.1%} · TPR %{y:.1%}<extra>Periodo base<\/extra>","FPR %{x:.1%} · TPR %{y:.1%}<extra>Periodo base<\/extra>","FPR %{x:.1%} · TPR %{y:.1%}<extra>Periodo base<\/extra>","FPR %{x:.1%} · TPR %{y:.1%}<extra>Periodo base<\/extra>","FPR %{x:.1%} · TPR %{y:.1%}<extra>Periodo base<\/extra>"],"marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[0,0.037662697313763503,0.081417889781224037,0.12572694544447521,0.1703129327056217,0.21600664635834949,0.26446967599003046,0.31376350041539741,0.3641650512323456,0.41761284962614237,0.46884519523677654,0.52007754084741065,0.57158681805594014,0.62475768485184158,0.67765162004984769,0.73026862364995848,0.78343949044585992,0.83661035724176125,0.89144281362503464,0.94544447521462194,1],"y":[0,0.16452442159383032,0.27249357326478146,0.37532133676092544,0.47557840616966579,0.56555269922879181,0.62982005141388175,0.68637532133676094,0.73264781491002573,0.75064267352185088,0.78920308483290491,0.82776349614395883,0.86375321336760924,0.88431876606683801,0.90745501285347041,0.93316195372750643,0.95372750642673521,0.97429305912596398,0.97943444730077123,0.99228791773778924,1],"type":"scatter","mode":"lines","name":"M21","line":{"color":"#a487ff","width":2.7999999999999998},"hovertemplate":["FPR %{x:.1%} · TPR %{y:.1%}<extra>M21<\/extra>","FPR %{x:.1%} · TPR %{y:.1%}<extra>M21<\/extra>","FPR %{x:.1%} · TPR %{y:.1%}<extra>M21<\/extra>","FPR %{x:.1%} · TPR %{y:.1%}<extra>M21<\/extra>","FPR %{x:.1%} · TPR %{y:.1%}<extra>M21<\/extra>","FPR %{x:.1%} · TPR %{y:.1%}<extra>M21<\/extra>","FPR %{x:.1%} · TPR %{y:.1%}<extra>M21<\/extra>","FPR %{x:.1%} · TPR %{y:.1%}<extra>M21<\/extra>","FPR %{x:.1%} · TPR %{y:.1%}<extra>M21<\/extra>","FPR %{x:.1%} · TPR %{y:.1%}<extra>M21<\/extra>","FPR %{x:.1%} · TPR %{y:.1%}<extra>M21<\/extra>","FPR %{x:.1%} · TPR %{y:.1%}<extra>M21<\/extra>","FPR %{x:.1%} · TPR %{y:.1%}<extra>M21<\/extra>","FPR %{x:.1%} · TPR %{y:.1%}<extra>M21<\/extra>","FPR %{x:.1%} · TPR %{y:.1%}<extra>M21<\/extra>","FPR %{x:.1%} · TPR %{y:.1%}<extra>M21<\/extra>","FPR %{x:.1%} · TPR %{y:.1%}<extra>M21<\/extra>","FPR %{x:.1%} · TPR %{y:.1%}<extra>M21<\/extra>","FPR %{x:.1%} · TPR %{y:.1%}<extra>M21<\/extra>","FPR %{x:.1%} · TPR %{y:.1%}<extra>M21<\/extra>","FPR %{x:.1%} · TPR %{y:.1%}<extra>M21<\/extra>"],"marker":{"color":"rgba(44,160,44,1)","line":{"color":"rgba(44,160,44,1)"}},"error_y":{"color":"rgba(44,160,44,1)"},"error_x":{"color":"rgba(44,160,44,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-71ca97778a4e1c82e285" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-71ca97778a4e1c82e285">{"x":{"visdat":{"f0432054096":["function () ","plotlyVisDat"]},"cur_data":"f0432054096","attrs":{"f0432054096":{"x":{},"y":{},"mode":"lines+markers","line":{"color":"#a487ff","width":2.7999999999999998},"marker":{"color":"#a487ff","size":7},"text":{},"hovertemplate":"%{text}: %{y:.1%}<extra><\/extra>","name":"Gini mensual","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"},"f0432054096.1":{"x":[1,21],"y":[0.53401070691811869,0.53401070691811869],"type":"scatter","mode":"lines","name":"Promedio periodo base","line":{"color":"#7f8db0","width":2,"dash":"dash"},"hovertemplate":"Promedio base: %{y:.1%}<extra><\/extra>","inherit":false}},"layout":{"margin":{"b":40,"l":8,"t":50,"r":16},"title":{"text":"Gini por mes","x":0.01,"xanchor":"left","font":{"color":"#ece9f8","size":15,"family":"Space Grotesk, system-ui, sans-serif"}},"paper_bgcolor":"rgba(0,0,0,0)","plot_bgcolor":"rgba(0,0,0,0)","font":{"color":"#9e97bf","family":"Space Grotesk, system-ui, sans-serif"},"xaxis":{"domain":[0,1],"automargin":true,"title":{"text":[],"font":{"size":12}},"gridcolor":"#2d2653","zerolinecolor":"#2d2653","linecolor":"#2d2653","tickfont":{"size":11},"tickmode":"array","tickvals":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21],"ticktext":["M01","M02","M03","M04","M05","M06","M07","M08","M09","M10","M11","M12","M13","M14","M15","M16","M17","M18","M19","M20","M21"]},"yaxis":{"domain":[0,1],"automargin":true,"title":{"text":"Gini","font":{"size":12}},"gridcolor":"#2d2653","zerolinecolor":"#2d2653","linecolor":"#2d2653","tickfont":{"size":11},"tickformat":".0%"},"legend":{"orientation":"h","x":0,"y":-0.28000000000000003,"font":{"size":12}},"hoverlabel":{"bgcolor":"#181331","font":{"color":"#ece9f8"}},"shapes":[{"type":"line","x0":12.5,"x1":12.5,"y0":0,"y1":1,"yref":"paper","line":{"color":"#2d2653","width":1.5,"dash":"dot"}},{"type":"line","x0":15.5,"x1":15.5,"y0":0,"y1":1,"yref":"paper","line":{"color":"#2d2653","width":1.5,"dash":"dot"}}],"annotations":[{"x":12.65,"y":1,"yref":"paper","text":"Validación","showarrow":false,"xanchor":"left","yanchor":"bottom","font":{"size":11,"color":"#9e97bf"}},{"x":15.65,"y":1,"yref":"paper","text":"Seguimiento","showarrow":false,"xanchor":"left","yanchor":"bottom","font":{"size":11,"color":"#9e97bf"}}],"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false,"displayModeBar":false},"data":[{"x":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21],"y":[0.5501036647005999,0.54108100122409364,0.49060791223537703,0.57762062156593408,0.5206683560342098,0.53051184019442221,0.49339750437780161,0.54433418870251882,0.55730541597791605,0.5249854675303105,0.56026638870071199,0.51724612177352869,0.52404546936422092,0.51542057646386175,0.48248789537988146,0.54236918436986814,0.47884912600539309,0.49280039458047131,0.47321584984821174,0.51125164820404012,0.47170919476976603],"mode":"lines+markers","line":{"color":"#a487ff","width":2.7999999999999998},"marker":{"color":"#a487ff","size":7,"line":{"color":"rgba(31,119,180,1)"}},"text":["M01","M02","M03","M04","M05","M06","M07","M08","M09","M10","M11","M12","M13","M14","M15","M16","M17","M18","M19","M20","M21"],"hovertemplate":["%{text}: %{y:.1%}<extra><\/extra>","%{text}: %{y:.1%}<extra><\/extra>","%{text}: %{y:.1%}<extra><\/extra>","%{text}: %{y:.1%}<extra><\/extra>","%{text}: %{y:.1%}<extra><\/extra>","%{text}: %{y:.1%}<extra><\/extra>","%{text}: %{y:.1%}<extra><\/extra>","%{text}: %{y:.1%}<extra><\/extra>","%{text}: %{y:.1%}<extra><\/extra>","%{text}: %{y:.1%}<extra><\/extra>","%{text}: %{y:.1%}<extra><\/extra>","%{text}: %{y:.1%}<extra><\/extra>","%{text}: %{y:.1%}<extra><\/extra>","%{text}: %{y:.1%}<extra><\/extra>","%{text}: %{y:.1%}<extra><\/extra>","%{text}: %{y:.1%}<extra><\/extra>","%{text}: %{y:.1%}<extra><\/extra>","%{text}: %{y:.1%}<extra><\/extra>","%{text}: %{y:.1%}<extra><\/extra>","%{text}: %{y:.1%}<extra><\/extra>","%{text}: %{y:.1%}<extra><\/extra>"],"name":"Gini mensual","type":"scatter","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[1,21],"y":[0.53401070691811869,0.53401070691811869],"type":"scatter","mode":"lines","name":"Promedio periodo base","line":{"color":"#7f8db0","width":2,"dash":"dash"},"hovertemplate":["Promedio base: %{y:.1%}<extra><\/extra>","Promedio base: %{y:.1%}<extra><\/extra>"],"marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+<div class="nota">
+<p>Los datos son simulados y los valores no están calibrados con resultados reales. El código de cálculo está en <code>proyectos/recupero/app/R/calculos.R</code>.</p>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiado");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiado");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+      window.quartoDecorateExternalLinks = function (root) {
+     var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+          if (!link.classList.contains('no-external-icon')) {
+          }
+        }
+      }
+      };
+      window.quartoDecorateExternalLinks(window.document);
+    // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+    // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+    const hideOnEscAndFocusOut = {
+      name: 'hideOnEscAndFocusOut',
+      defaultValue: true,
+      fn(instance) {
+        const dismiss = () => {
+          // A show scheduled by the trigger delay would otherwise reopen it
+          instance.clearDelayTimeouts();
+          instance.hide();
+        };
+        const onKeyDown = (event) => {
+          if (event.key !== 'Escape') {
+            return;
+          }
+          // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+          // except an open reveal.js slide menu, which Esc should close too.
+          // The menu handles keys only when its keyboard option is on.
+          const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+            window.Reveal.getConfig().menu?.keyboard !== false;
+          if (!menuHandlesEsc) {
+            event.stopPropagation();
+          }
+          if (instance.popper.contains(window.document.activeElement)) {
+            // Disabled while refocusing so the focus trigger does not reopen it
+            instance.disable();
+            instance.reference.focus();
+            instance.enable();
+          }
+          dismiss();
+        };
+        const onFocusOut = (event) => {
+          const target = event.relatedTarget;
+          if (target && !instance.reference.contains(target) &&
+              !instance.popper.contains(target)) {
+            dismiss();
+          }
+        };
+        // On the trigger too: a click trigger (code-annotations: select) has no
+        // blur handling. Attached for the instance's lifetime so leaving the
+        // trigger also cancels a show still pending on the trigger delay.
+        instance.reference.addEventListener('focusout', onFocusOut);
+        return {
+          onShow() {
+            window.document.addEventListener('keydown', onKeyDown, true);
+            instance.popper.addEventListener('focusout', onFocusOut);
+          },
+          onHide() {
+            window.document.removeEventListener('keydown', onKeyDown, true);
+            instance.popper.removeEventListener('focusout', onFocusOut);
+          },
+          onDestroy() {
+            instance.reference.removeEventListener('focusout', onFocusOut);
+          },
+        };
+      },
+    };
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+        plugins: [hideOnEscAndFocusOut],
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          // Each band is positioned against its own containing block, which is
+          // not the offsetParent of the lines, so place it from client rects.
+          const placeBand = (band, firstEl, lastEl, codeBlock) => {
+            const container = band.offsetParent;
+            if (container === null) {
+              return;
+            }
+            const containerRect = container.getBoundingClientRect();
+            // Reveal.js scales slides with a transform, so convert client
+            // pixels back to the CSS pixels of the container.
+            const scale = containerRect.height / container.offsetHeight || 1;
+            const firstRect = firstEl.getBoundingClientRect();
+            const lastRect = lastEl.getBoundingClientRect();
+            const top = (firstRect.top - containerRect.top) / scale - container.clientTop + container.scrollTop;
+            const height = (lastRect.bottom - firstRect.top) / scale;
+            band.style.top = top - 2 + "px";
+            band.style.height = height + 4 + "px";
+            if (codeBlock) {
+              // Without the copy button wrapper, the containing block is wider
+              // than the code block, so span the code block explicitly.
+              const blockRect = codeBlock.getBoundingClientRect();
+              band.style.left = (blockRect.left - containerRect.left) / scale - container.clientLeft + container.scrollLeft + "px";
+              band.style.width = blockRect.width / scale + "px";
+            }
+          };
+          if (lineIds.length > 0) {
+            const el = window.document.getElementById(lineIds[0]);
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const parent = el.parentElement.parentElement;
+            // cook up a div (if necessary) and position it
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            placeBand(div, el, lastEl, parent.closest("div.sourceCode") || parent);
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            placeBand(gutterDiv, el, lastEl);
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+  <script type="application/javascript">
+  window.quartoScrollableRegionsLabels = {"code":"Código desplazable","output":"Salida desplazable"};
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

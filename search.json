@@ -1,0 +1,58 @@
+[
+  {
+    "objectID": "recupero.html",
+    "href": "recupero.html",
+    "title": "Seguimiento de recupero de cartera castigada",
+    "section": "",
+    "text": "Datos simulados\nEste reporte compara M21 (seguimiento) con el periodo base de entrenamiento. Se genera con un comando; para otro mes basta cambiar REPORTE_MES."
+  },
+  {
+    "objectID": "recupero.html#resumen",
+    "href": "recupero.html#resumen",
+    "title": "Seguimiento de recupero de cartera castigada",
+    "section": "Resumen",
+    "text": "Resumen\n\n\n\n  \n    Monto recuperado, M21\n    78,3 MM\n    99,5% del promedio base (78,7 MM)\n  \n  \n    Tasa de pago, M21\n    9,7%\n    95,1% del promedio base (10,2%)\n  \n  \n    Recuperado / deuda, M21\n    2,70%\n    102,0% del promedio base (2,64%)\n  \n\n\n\n\nRecuperación: el monto recuperado fue 99,5% del promedio mensual base y la tasa de pago, 95,1%.\nEstabilidad: variables con PSI sobre 0,25: ext_03. Entre 0,10 y 0,25: ext_02, mor_01.\nPoder del modelo: Gini de 47,2% contra 53,4% del periodo base (-6,2 puntos)."
+  },
+  {
+    "objectID": "recupero.html#pagos-y-recuperación",
+    "href": "recupero.html#pagos-y-recuperación",
+    "title": "Seguimiento de recupero de cartera castigada",
+    "section": "Pagos y recuperación",
+    "text": "Pagos y recuperación"
+  },
+  {
+    "objectID": "recupero.html#estabilidad-de-variables",
+    "href": "recupero.html#estabilidad-de-variables",
+    "title": "Seguimiento de recupero de cartera castigada",
+    "section": "Estabilidad de variables",
+    "text": "Estabilidad de variables\nPSI por variable y mes. Verde bajo 0,10; ámbar hasta 0,25; rojo sobre 0,25."
+  },
+  {
+    "objectID": "recupero.html#poder-del-modelo",
+    "href": "recupero.html#poder-del-modelo",
+    "title": "Seguimiento de recupero de cartera castigada",
+    "section": "Poder del modelo",
+    "text": "Poder del modelo\n\n\n\n\n\n\n\n\n\n\n\n\n\nLos datos son simulados y los valores no están calibrados con resultados reales. El código de cálculo está en proyectos/recupero/app/R/calculos.R."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Modelamiento de riesgo",
+    "section": "",
+    "text": "Demos con datos simulados\nSoy Víctor Urra Fuentes, ingeniero estadístico. Trabajo con modelos predictivos de riesgo de crédito, pipelines en BigQuery y reportes en R. Aquí muestro cómo abordo ese trabajo con datos simulados o públicos: nada de lo que verás proviene de carteras, empresas o modelos reales."
+  },
+  {
+    "objectID": "index.html#proyectos",
+    "href": "index.html#proyectos",
+    "title": "Modelamiento de riesgo",
+    "section": "Proyectos",
+    "text": "Proyectos\n\nSeguimiento de recupero de cartera castigada\nUn modelo de probabilidad de pago a 90 días en BigQuery ML y su monitoreo mensual: recuperación frente al periodo base, estabilidad de variables (PSI) y poder del modelo (Gini, KS). La página es un reporte que se genera solo a partir de los datos.\n\n\nScorecard de originación\nComparación de un scorecard logístico con un modelo de gradient boosting sobre datos públicos. En preparación.\n\n\nAplicaciones personales en Shiny\nDashboards de música y cine con mis propios datos. En preparación."
+  },
+  {
+    "objectID": "index.html#contacto",
+    "href": "index.html#contacto",
+    "title": "Modelamiento de riesgo",
+    "section": "Contacto",
+    "text": "Contacto\n\nCorreo: victorurrafuentes@gmail.com\nLinkedIn: Mi perfil\nGitHub: Mi usuario"
+  }
+]
