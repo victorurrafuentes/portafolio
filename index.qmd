@@ -25,7 +25,6 @@ Comparación de un scorecard logístico con un modelo de gradient boosting sobre
 Dashboards de música y cine con mis propios datos. *En preparación.*
 :::
 
-## Contacto
 
 ## Contacto
 
