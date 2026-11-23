@@ -32,7 +32,7 @@
     "href": "recupero.html#poder-del-modelo",
     "title": "Seguimiento de recupero de cartera castigada",
     "section": "Poder del modelo",
-    "text": "Poder del modelo\n\n\n\n\n\n\n\n\n\n\n\n\n\nLos datos son simulados y los valores no están calibrados con resultados reales. El código de cálculo está en proyectos/recupero/app/R/calculos.R."
+    "text": "Poder del modelo\n\n\n\n\n\n\n\n\n\n\n\n\n\nTodos los datos de este reporte son simulados. El código de cálculo está en proyectos/recupero/app/R/calculos.R."
   },
   {
     "objectID": "index.html",
