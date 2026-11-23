@@ -1,6 +1,18 @@
 ---
 title: "Seguimiento de recupero de cartera castigada"
 page-layout: full
+format:
+  html:
+    code-links:
+      - text: Código del proyecto
+        icon: github
+        href: https://github.com/victorurrafuentes/portafolio-riesgo/tree/main/proyectos/recupero
+      - text: Cálculos del panel (R)
+        icon: file-earmark-code
+        href: https://github.com/victorurrafuentes/portafolio-riesgo/blob/main/proyectos/recupero/app/R/calculos.R
+      - text: Modelo y scoring (SQL)
+        icon: database
+        href: https://github.com/victorurrafuentes/portafolio-riesgo/tree/main/proyectos/recupero/sql
 subtitle: "Reporte mensual generado con datos simulados"
 execute:
   echo: false

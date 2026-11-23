@@ -6,7 +6,7 @@ project:
   output-dir: _site
 
 website:
-    title: "Víctor Urra Fuentes"
+  title: "Víctor Urra Fuentes"
   navbar:
     left:
       - href: index.qmd
