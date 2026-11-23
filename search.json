@@ -37,21 +37,21 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Modelamiento de riesgo",
+    "title": "Víctor Urra Fuentes",
     "section": "",
-    "text": "Demos con datos simulados\nSoy Víctor Urra Fuentes, ingeniero estadístico. Trabajo con modelos predictivos de riesgo de crédito, pipelines en BigQuery y reportes en R. Aquí muestro cómo abordo ese trabajo con datos simulados o públicos: nada de lo que verás proviene de carteras, empresas o modelos reales."
+    "text": "Demos con datos simulados\nIngeniero Estadístico con cinco años de experiencia en riesgo. Mi interés se centra en las tecnologías cloud y en las herramientas analíticas que vinculan los datos con las necesidades del negocio.\nAbordo el ciclo completo de un modelo: la comprensión del problema, el desarrollo y la validación, la implementación, el monitoreo del desempeño y la evaluación de su impacto. Los proyectos de este sitio utilizan datos simulados o públicos; ninguno proviene de carteras, empresas o modelos reales."
   },
   {
     "objectID": "index.html#proyectos",
     "href": "index.html#proyectos",
-    "title": "Modelamiento de riesgo",
+    "title": "Víctor Urra Fuentes",
     "section": "Proyectos",
     "text": "Proyectos\n\nSeguimiento de recupero de cartera castigada\nUn modelo de probabilidad de pago a 90 días en BigQuery ML y su monitoreo mensual: recuperación frente al periodo base, estabilidad de variables (PSI) y poder del modelo (Gini, KS). La página es un reporte que se genera solo a partir de los datos.\n\n\nScorecard de originación\nComparación de un scorecard logístico con un modelo de gradient boosting sobre datos públicos. En preparación.\n\n\nAplicaciones personales en Shiny\nDashboards de música y cine con mis propios datos. En preparación."
   },
   {
     "objectID": "index.html#contacto",
     "href": "index.html#contacto",
-    "title": "Modelamiento de riesgo",
+    "title": "Víctor Urra Fuentes",
     "section": "Contacto",
     "text": "Contacto\n\nCorreo: victorurrafuentes@gmail.com\nLinkedIn: Mi perfil\nGitHub: Mi usuario"
   }
