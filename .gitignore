@@ -1,0 +1,7 @@
+_site/
+.quarto/
+*.knit.md
+/.Rhistory
+
+/.quarto/
+**/*.quarto_ipynb

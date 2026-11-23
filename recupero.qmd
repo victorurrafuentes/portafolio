@@ -1,0 +1,82 @@
+---
+title: "Seguimiento de recupero de cartera castigada"
+page-layout: full
+subtitle: "Reporte mensual generado con datos simulados"
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r}
+#| include: false
+library(dplyr); library(plotly); library(DT)
+for (f in list.files("proyectos/recupero/app/R", pattern = "\\.R$", full.names = TRUE)) source(f, encoding = "UTF-8")
+
+# Mes del reporte: se elige al generar (REPORTE_MES=M20 quarto render recupero.qmd)
+mes <- Sys.getenv("REPORTE_MES", "M21")
+datos <- leer_datos("proyectos/recupero/data")
+stopifnot(mes %in% levels(datos$pagos$mes_label))
+
+agregado <- agregar_pagos(datos$pagos, "PROB", c("RECIENTE", "ANTIGUO"))
+base_v   <- linea_base_veintil(agregado)
+totales  <- totales_mensuales(agregado)
+cmp      <- comparar_con_base(totales, mes)
+psi      <- psi_por_mes(datos$estab)
+metricas <- metricas_por_mes(datos$modelo)
+roc_base <- curva_roc(agregado_base_modelo(datos$modelo))
+roc_mes  <- datos$modelo |> filter(mes_label == mes) |> curva_roc()
+
+periodo_mes <- totales$periodo[totales$mes_label == mes]
+gini_mes  <- metricas$gini[metricas$mes_label == mes]
+gini_base <- mean(metricas$gini[metricas$periodo == "ENTRENAMIENTO"])
+psi_mes   <- psi |> filter(mes_label == mes)
+rojas     <- psi_mes$variable[psi_mes$psi > 0.25]
+ambar     <- psi_mes$variable[psi_mes$psi > 0.10 & psi_mes$psi <= 0.25]
+lista <- function(x) if (length(x) == 0) "ninguna" else paste(x, collapse = ", ")
+```
+
+<span class="etiqueta">Datos simulados</span>
+
+Este reporte compara **`r mes`** (`r tolower(periodo_mes)`) con el periodo base de entrenamiento. Se genera con un comando; para otro mes basta cambiar `REPORTE_MES`.
+
+## Resumen
+
+```{r}
+htmltools::HTML(as.character(tarjetas_pagos(cmp, mes)))
+```
+
+- **Recuperación:** el monto recuperado fue `r fmt_pct(cmp$razon_monto)` del promedio mensual base y la tasa de pago, `r fmt_pct(cmp$razon_pago)`.
+- **Estabilidad:** variables con PSI sobre 0,25: **`r lista(rojas)`**. Entre 0,10 y 0,25: `r lista(ambar)`.
+- **Poder del modelo:** Gini de `r fmt_pct(gini_mes)` contra `r fmt_pct(gini_base)` del periodo base (`r sub(".", ",", sprintf("%+.1f", (gini_mes - gini_base) * 100), fixed = TRUE)` puntos).
+
+## Pagos y recuperación
+
+```{r}
+grafico_tasa_pago(base_v, filter(agregado, mes_label == mes), mes)
+```
+
+```{r}
+monto_base <- totales |> filter(periodo == "ENTRENAMIENTO") |> summarise(m = mean(monto_recuperado)) |> pull(m)
+grafico_evolucion(totales, monto_base)
+```
+
+## Estabilidad de variables
+
+PSI por variable y mes. Verde bajo 0,10; ámbar hasta 0,25; rojo sobre 0,25.
+
+```{r}
+tabla_psi(psi)
+```
+
+## Poder del modelo
+
+```{r}
+#| layout-ncol: 2
+grafico_roc(roc_base, roc_mes, mes)
+grafico_gini_mensual(metricas, gini_base)
+```
+
+::: {.nota}
+Los datos son simulados y los valores no están calibrados con resultados reales. El código de cálculo está en `proyectos/recupero/app/R/calculos.R`.
+:::

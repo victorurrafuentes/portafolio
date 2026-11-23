@@ -1,0 +1,24 @@
+project:
+  type: website
+  render:
+    - index.qmd
+    - recupero.qmd
+  output-dir: _site
+
+website:
+  title: "Víctor · Modelamiento de riesgo"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Inicio
+      - href: recupero.qmd
+        text: Seguimiento de recupero
+
+format:
+  html:
+    theme: darkly
+    css: styles.css
+    toc: true
+    toc-title: "En esta página"
+    lang: es
+    embed-resources: false

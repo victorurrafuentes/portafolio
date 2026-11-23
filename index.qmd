@@ -1,0 +1,34 @@
+---
+title: "Modelamiento de riesgo"
+subtitle: "Modelos, monitoreo y reportes automatizados"
+toc: false
+---
+
+<span class="etiqueta">Demos con datos simulados</span>
+
+Soy Víctor Urra Fuentes, ingeniero estadístico. Trabajo con modelos predictivos de riesgo de crédito, pipelines en BigQuery y reportes en R. Aquí muestro cómo abordo ese trabajo con **datos simulados o públicos**: nada de lo que verás proviene de carteras, empresas o modelos reales.
+
+## Proyectos
+
+::: {.proyecto}
+### [Seguimiento de recupero de cartera castigada](recupero.qmd)
+Un modelo de probabilidad de pago a 90 días en BigQuery ML y su monitoreo mensual: recuperación frente al periodo base, estabilidad de variables (PSI) y poder del modelo (Gini, KS). La página es un reporte que se genera solo a partir de los datos.
+:::
+
+::: {.proyecto}
+### Scorecard de originación
+Comparación de un scorecard logístico con un modelo de gradient boosting sobre datos públicos. *En preparación.*
+:::
+
+::: {.proyecto}
+### Aplicaciones personales en Shiny
+Dashboards de música y cine con mis propios datos. *En preparación.*
+:::
+
+## Contacto
+
+## Contacto
+
+- Correo: [victorurrafuentes@gmail.com](mailto:victorurrafuentes@gmail.com)
+- LinkedIn: [Mi perfil](https://www.linkedin.com/in/victorurraf)
+- GitHub: [Mi usuario](https://github.com/victorurrafuentes)

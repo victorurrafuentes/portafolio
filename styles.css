@@ -1,0 +1,23 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap");
+:root { --acento: #a487ff; --fondo: #0f0c1a; --superficie: #181331; --linea: #2d2653; --suave: #9e97bf; }
+body, .navbar { background-color: var(--fondo) !important; font-family: "Space Grotesk", system-ui, sans-serif; }
+.navbar { border-bottom: 1px solid var(--linea); }
+a { color: var(--acento); }
+h1, h2, h3 { font-weight: 700; letter-spacing: -0.01em; }
+.etiqueta { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase;
+            color: var(--acento); border: 1px solid var(--acento); border-radius: 999px; padding: 3px 12px; }
+.tarjetas { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin: 16px 0; }
+.tarjeta { background: var(--superficie); border: 1px solid var(--linea); border-radius: 14px; padding: 14px 18px; }
+.tarjeta-etiqueta, .tarjeta-detalle { font-size: 13px; color: var(--suave); }
+.tarjeta-valor { font-size: 28px; font-weight: 700; }
+.tarjeta-detalle.sube { color: #3ecf8e; } .tarjeta-detalle.baja { color: #ef5b6b; }
+.proyecto { background: var(--superficie); border: 1px solid var(--linea); border-radius: 14px; padding: 16px 20px; margin: 12px 0; }
+.proyecto h3 { margin-top: 0; }
+.nota { color: var(--suave); font-size: 14px; }
+table.dataTable { color: #ece9f8; }
+
+/* Tablas DT sobre fondo oscuro: las celdas con semaforo conservan su color inline */
+table.dataTable { --bs-table-bg: transparent; --bs-table-color: #ece9f8; --bs-table-striped-bg: transparent; width: 100% !important; }
+table.dataTable tbody tr, table.dataTable tbody td { background-color: transparent; color: #ece9f8; }
+table.dataTable thead th { color: #9e97bf; border-bottom: 1px solid var(--linea); }
+.dataTables_wrapper { overflow-x: auto; }
