@@ -1,12 +1,14 @@
 ---
-title: "Modelamiento de riesgo"
-subtitle: "Modelos, monitoreo y reportes automatizados"
+title: "Víctor Urra Fuentes"
+subtitle: "Ingeniero Estadístico · Ciencia de Datos y Analítica"
 toc: false
 ---
 
 <span class="etiqueta">Demos con datos simulados</span>
 
-Soy Víctor Urra Fuentes, ingeniero estadístico. Trabajo con modelos predictivos de riesgo de crédito, pipelines en BigQuery y reportes en R. Aquí muestro cómo abordo ese trabajo con **datos simulados o públicos**: nada de lo que verás proviene de carteras, empresas o modelos reales.
+Ingeniero Estadístico con cinco años de experiencia en riesgo. Mi interés se centra en las tecnologías cloud y en las herramientas analíticas que vinculan los datos con las necesidades del negocio.
+
+Abordo el ciclo completo de un modelo: la comprensión del problema, el desarrollo y la validación, la implementación, el monitoreo del desempeño y la evaluación de su impacto. Los proyectos de este sitio utilizan **datos simulados o públicos**; ninguno proviene de carteras, empresas o modelos reales.
 
 ## Proyectos
 
@@ -24,7 +26,6 @@ Comparación de un scorecard logístico con un modelo de gradient boosting sobre
 ### Aplicaciones personales en Shiny
 Dashboards de música y cine con mis propios datos. *En preparación.*
 :::
-
 
 ## Contacto
 
