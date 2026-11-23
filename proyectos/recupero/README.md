@@ -2,7 +2,7 @@
 
 Demo de un flujo de modelamiento y seguimiento: un modelo de probabilidad de pago a 90 días entrenado en BigQuery ML, y un panel en R Shiny para monitorearlo mes a mes.
 
-> **Todos los datos son simulados.** No provienen de ninguna cartera, empresa ni modelo real. Los nombres de proyecto, dataset, tablas y variables son ficticios, y los valores simulados no están calibrados con resultados reales.
+> **Todos los datos son simulados.** No provienen de ninguna cartera, empresa ni modelo real. Los nombres de proyecto, dataset, tablas y variables son ficticios.
 
 ## Qué muestra
 
@@ -39,7 +39,7 @@ setwd("app")
 shiny::runApp()
 ```
 
-El panel carga la tipografía desde Google Fonts, por lo que necesita conexión para verse como en las capturas; sin ella usa una tipografía del sistema.
+El panel carga su tipografía desde Google Fonts; sin conexión usa una tipografía del sistema.
 
 ## Alcance
 

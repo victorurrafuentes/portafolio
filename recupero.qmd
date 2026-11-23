@@ -78,5 +78,5 @@ grafico_gini_mensual(metricas, gini_base)
 ```
 
 ::: {.nota}
-Los datos son simulados y los valores no están calibrados con resultados reales. El código de cálculo está en `proyectos/recupero/app/R/calculos.R`.
+Todos los datos de este reporte son simulados. El código de cálculo está en `proyectos/recupero/app/R/calculos.R`.
 :::
