@@ -46,7 +46,14 @@
     "href": "index.html#proyectos",
     "title": "Víctor Urra Fuentes",
     "section": "Proyectos",
-    "text": "Proyectos\n\nSeguimiento de recupero de cartera castigada\nUn modelo de probabilidad de pago a 90 días en BigQuery ML y su monitoreo mensual: recuperación frente al periodo base, estabilidad de variables (PSI) y poder del modelo (Gini, KS). La página es un reporte que se genera solo a partir de los datos.\n\n\nScorecard de originación\nComparación de un scorecard logístico con un modelo de gradient boosting sobre datos públicos. En preparación.\n\n\nAplicaciones personales en Shiny\nDashboards de música y cine con mis propios datos. En preparación."
+    "text": "Proyectos\n\nSeguimiento de recupero de cartera castigada\nUn modelo de probabilidad de pago a 90 días en BigQuery ML y su monitoreo mensual: recuperación frente al periodo base, estabilidad de variables (PSI) y poder del modelo (Gini, KS). La página es un reporte que se genera solo a partir de los datos.\n\n\nScorecard de originación\nComparación de un scorecard logístico con un modelo de gradient boosting sobre datos públicos. En preparación."
+  },
+  {
+    "objectID": "index.html#proyectos-personales",
+    "href": "index.html#proyectos-personales",
+    "title": "Víctor Urra Fuentes",
+    "section": "Proyectos personales",
+    "text": "Proyectos personales\n\nAnálisis de tu historial de Letterboxd\nAplicación en R Shiny que convierte el historial exportado de Letterboxd en estadísticas: directores, actores, géneros y países más vistos, géneros por década, hábitos de registro y el año en revisión. Los datos de las películas se enriquecen con la API de TMDB. El video usa la cuenta ficticia del modo demo.\n\nAbrir la aplicación Ver código\nLa app puede tardar unos 30 segundos en cargar. Usa la API de TMDB, pero no está avalada ni certificada por TMDB."
   },
   {
     "objectID": "index.html#contacto",
