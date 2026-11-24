@@ -21,3 +21,6 @@ table.dataTable { --bs-table-bg: transparent; --bs-table-color: #ece9f8; --bs-ta
 table.dataTable tbody tr, table.dataTable tbody td { background-color: transparent; color: #ece9f8; }
 table.dataTable thead th { color: #9e97bf; border-bottom: 1px solid var(--linea); }
 .dataTables_wrapper { overflow-x: auto; }
+
+/* Video de demostracion en tarjetas de proyecto */
+.demo-video { display: block; width: 100%; max-width: 900px; margin: 14px 0; border: 1px solid var(--linea); border-radius: 10px; }

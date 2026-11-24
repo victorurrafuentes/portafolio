@@ -24,9 +24,20 @@ Un modelo de probabilidad de pago a 90 días en BigQuery ML y su monitoreo mensu
 Comparación de un scorecard logístico con un modelo de gradient boosting sobre datos públicos. *En preparación.*
 :::
 
+## Proyectos personales
+
 ::: {.proyecto}
-### Aplicaciones personales en Shiny
-Dashboards de música y cine con mis propios datos. *En preparación.*
+### Análisis de tu historial de Letterboxd
+
+Aplicación en R Shiny que convierte el historial exportado de Letterboxd en estadísticas: directores, actores, géneros y países más vistos, géneros por década, hábitos de registro y el año en revisión. Los datos de las películas se enriquecen con la API de TMDB. El video usa la cuenta ficticia del modo demo.
+
+```{=html}
+<video class="demo-video" src="media/boxd-demo.mp4" poster="media/boxd-poster.jpg" autoplay muted loop playsinline controls preload="metadata"></video>
+```
+
+[Abrir la aplicación](https://sfb-apps.shinyapps.io/boxd-stats-app/){.btn .btn-outline-primary .btn-sm} [Ver código](https://github.com/victorurrafuentes/portafolio/tree/main/proyectos/boxd-stats){.btn .btn-outline-primary .btn-sm}
+
+<span class="nota">La app puede tardar unos 30 segundos en cargar. Usa la API de TMDB, pero no está avalada ni certificada por TMDB.</span>
 :::
 
 ## Contacto

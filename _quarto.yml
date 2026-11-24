@@ -4,6 +4,8 @@ project:
     - index.qmd
     - recupero.qmd
   output-dir: _site
+  resources:
+    - media/*
 
 website:
   title: "Víctor Urra Fuentes"
