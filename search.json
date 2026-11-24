@@ -14,6 +14,13 @@
     "text": "Flujo de trabajo\nDel dato al monitoreo, con cada etapa reproducible y escrita en código. La etapa central es el ajuste del Random Forest mediante búsqueda aleatoria de hiperparámetros.\n\n  \n    1\n    Datos\n    Tablón por cuenta y mes. Entrenamiento con el periodo base (M01–M12) y validación fuera de tiempo (M13–M15).\n  \n  \n    2\n    Entrenamiento\n    Random Forest en BigQuery ML con búsqueda aleatoria: 20 pruebas, 4 en paralelo, optimizando ROC AUC sobre 5 hiperparámetros. Ajuste automático por desbalance de clases.\n  \n  \n    3\n    Evaluación\n    Métricas sobre el periodo de validación, que el modelo no vio, e importancia global de las variables.\n  \n  \n    4\n    Scoring mensual\n    Validación previa del mes y escritura dentro de una transacción: se puede repetir sin duplicar filas. Salida en veintiles.\n  \n  \n    5\n    Monitoreo y reporte\n    PSI por variable, Gini y curva ROC por mes. Esta página se genera sola con un comando.\n  \n\nEl código de las etapas 2 a 4 está en 01_entrenar_modelo.sql y 02_scoring_mensual.sql."
   },
   {
+    "objectID": "recupero.html#ventajas-de-esta-metodología",
+    "href": "recupero.html#ventajas-de-esta-metodología",
+    "title": "Seguimiento de recupero de cartera castigada",
+    "section": "Ventajas de esta metodología",
+    "text": "Ventajas de esta metodología\n\nTodo en un mismo lugar. Los datos, el entrenamiento y la predicción ocurren dentro de BigQuery, sin extraer información ni moverla a otro entorno. El modelo se crea con SQL y se usa de inmediato en la misma consulta de scoring.\nDesarrollo ágil. Pasar de una tabla de datos a un modelo ajustado y evaluado requiere pocas sentencias, lo que permite iterar rápido y llegar pronto a un resultado medible.\nFlujo mantenible como pipeline. El entrenamiento, el scoring y las validaciones son scripts versionables que se pueden mantener y programar dentro del propio BigQuery, o gestionar de forma más ordenada con herramientas como Dataform.\nMenor barrera técnica. Basta con SQL; no se necesita dominar otros lenguajes de programación, lo que facilita que más personas del equipo comprendan, revisen y mantengan el modelo.\nComplementa a Python y R, no los reemplaza. Estos ofrecen mucha más personalización cuando el problema lo exige. BigQuery ML es una alternativa sólida para poner en marcha proyectos con rapidez."
+  },
+  {
     "objectID": "recupero.html#resumen",
     "href": "recupero.html#resumen",
     "title": "Seguimiento de recupero de cartera castigada",
