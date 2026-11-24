@@ -88,6 +88,14 @@ Del dato al monitoreo, con cada etapa reproducible y escrita en código. La etap
 
 El código de las etapas 2 a 4 está en [`01_entrenar_modelo.sql`](https://github.com/victorurrafuentes/portafolio/blob/main/proyectos/recupero/sql/01_entrenar_modelo.sql) y [`02_scoring_mensual.sql`](https://github.com/victorurrafuentes/portafolio/blob/main/proyectos/recupero/sql/02_scoring_mensual.sql).
 
+## Ventajas de esta metodología
+
+- **Todo en un mismo lugar.** Los datos, el entrenamiento y la predicción ocurren dentro de BigQuery, sin extraer información ni moverla a otro entorno. El modelo se crea con SQL y se usa de inmediato en la misma consulta de scoring.
+- **Desarrollo ágil.** Pasar de una tabla de datos a un modelo ajustado y evaluado requiere pocas sentencias, lo que permite iterar rápido y llegar pronto a un resultado medible.
+- **Flujo mantenible como pipeline.** El entrenamiento, el scoring y las validaciones son scripts versionables que se pueden mantener y programar dentro del propio BigQuery, o gestionar de forma más ordenada con herramientas como Dataform.
+- **Menor barrera técnica.** Basta con SQL; no se necesita dominar otros lenguajes de programación, lo que facilita que más personas del equipo comprendan, revisen y mantengan el modelo.
+- **Complementa a Python y R, no los reemplaza.** Estos ofrecen mucha más personalización cuando el problema lo exige. BigQuery ML es una alternativa sólida para poner en marcha proyectos con rapidez.
+
 ## Resumen
 
 ```{r}
