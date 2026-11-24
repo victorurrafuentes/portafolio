@@ -7,6 +7,13 @@
     "text": "Datos simulados\nEste reporte compara M21 (seguimiento) con el periodo base de entrenamiento. Se genera con un comando; para otro mes basta cambiar REPORTE_MES."
   },
   {
+    "objectID": "recupero.html#flujo-de-trabajo",
+    "href": "recupero.html#flujo-de-trabajo",
+    "title": "Seguimiento de recupero de cartera castigada",
+    "section": "Flujo de trabajo",
+    "text": "Flujo de trabajo\nDel dato al monitoreo, con cada etapa reproducible y escrita en código. La etapa central es el ajuste del Random Forest mediante búsqueda aleatoria de hiperparámetros.\n\n  \n    1\n    Datos\n    Tablón por cuenta y mes. Entrenamiento con el periodo base (M01–M12) y validación fuera de tiempo (M13–M15).\n  \n  \n    2\n    Entrenamiento\n    Random Forest en BigQuery ML con búsqueda aleatoria: 20 pruebas, 4 en paralelo, optimizando ROC AUC sobre 5 hiperparámetros. Ajuste automático por desbalance de clases.\n  \n  \n    3\n    Evaluación\n    Métricas sobre el periodo de validación, que el modelo no vio, e importancia global de las variables.\n  \n  \n    4\n    Scoring mensual\n    Validación previa del mes y escritura dentro de una transacción: se puede repetir sin duplicar filas. Salida en veintiles.\n  \n  \n    5\n    Monitoreo y reporte\n    PSI por variable, Gini y curva ROC por mes. Esta página se genera sola con un comando.\n  \n\nEl código de las etapas 2 a 4 está en 01_entrenar_modelo.sql y 02_scoring_mensual.sql."
+  },
+  {
     "objectID": "recupero.html#resumen",
     "href": "recupero.html#resumen",
     "title": "Seguimiento de recupero de cartera castigada",
@@ -46,7 +53,7 @@
     "href": "index.html#proyectos",
     "title": "Víctor Urra Fuentes",
     "section": "Proyectos",
-    "text": "Proyectos\n\nSeguimiento de recupero de cartera castigada\nUn modelo de probabilidad de pago a 90 días en BigQuery ML y su monitoreo mensual: recuperación frente al periodo base, estabilidad de variables (PSI) y poder del modelo (Gini, KS). La página es un reporte que se genera solo a partir de los datos.\n\n\nScorecard de originación\nComparación de un scorecard logístico con un modelo de gradient boosting sobre datos públicos. En preparación."
+    "text": "Proyectos\n\nSeguimiento de recupero de cartera castigada\nUn Random Forest en BigQuery ML, con búsqueda aleatoria de hiperparámetros, que estima la probabilidad de pago a 90 días, y su monitoreo mensual: recuperación frente al periodo base, estabilidad de variables (PSI) y poder del modelo (Gini, KS). La página es un reporte que se genera solo a partir de los datos.\n\n\nScorecard de originación\nComparación de un scorecard logístico con un modelo de gradient boosting sobre datos públicos. En preparación."
   },
   {
     "objectID": "index.html#proyectos-personales",
