@@ -2,7 +2,7 @@
 
 Sitio personal con proyectos de modelamiento de riesgo, hecho con [Quarto](https://quarto.org). Todo el contenido usa **datos simulados o públicos**: nada proviene de carteras, empresas o modelos reales.
 
-**Sitio publicado:** https://victorurrafuentes.github.io/portafolio-riesgo/
+**Sitio publicado:** https://victorurrafuentes.github.io/portafolio/
 
 ## Proyectos
 

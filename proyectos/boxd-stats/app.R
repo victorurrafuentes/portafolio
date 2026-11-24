@@ -667,7 +667,7 @@ ui <- fluidPage(
       uiOutput("feedback_ui"),
       div(class = "app-footer",
         "Made by ",
-        tags$a(href = "https://victorurrafuentes.github.io/portafolio-riesgo", target = "_blank", "V\u00edctor Urra Fuentes")
+        tags$a(href = "https://victorurrafuentes.github.io/portafolio", target = "_blank", "V\u00edctor Urra Fuentes")
       )
     ),
 
