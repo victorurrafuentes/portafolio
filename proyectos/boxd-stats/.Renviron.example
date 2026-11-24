@@ -1,0 +1,9 @@
+# Copia este archivo como .Renviron (sin ".example") y completa los valores.
+# El archivo .Renviron nunca debe subirse al repositorio.
+
+# Obligatoria: clave gratuita de la API de TMDB.
+TMDB_API_KEY=tu_clave_aqui
+
+# Opcional: URL de un formulario de Formspree para recibir feedback.
+# Si no la defines, la app oculta el formulario de feedback.
+FORMSPREE_ENDPOINT=

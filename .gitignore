@@ -6,3 +6,7 @@ _site/
 /.quarto/
 **/*.quarto_ipynb
 README.html
+
+# Claves y archivos de despliegue: nunca al repositorio
+.Renviron
+rsconnect/
