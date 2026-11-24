@@ -24,3 +24,20 @@ table.dataTable thead th { color: #9e97bf; border-bottom: 1px solid var(--linea)
 
 /* Video de demostracion en tarjetas de proyecto */
 .demo-video { display: block; width: 100%; max-width: 900px; margin: 14px 0; border: 1px solid var(--linea); border-radius: 10px; }
+
+/* Esquema de flujo de trabajo (recupero) */
+.flujo { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 14px; margin: 18px 0; counter-reset: paso; }
+.paso { position: relative; background: var(--superficie); border: 1px solid var(--linea); border-radius: 14px; padding: 14px 16px 12px; }
+.paso h4 { margin: 8px 0 6px; font-size: 16px; font-weight: 700; }
+.paso p { margin: 0; font-size: 13.5px; line-height: 1.45; color: var(--suave); }
+.paso p strong { color: #ece9f8; }
+.paso-num { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%;
+            background: var(--linea); color: var(--acento); font-weight: 700; font-size: 13px; }
+.paso-clave { border-color: var(--acento); box-shadow: 0 0 0 1px var(--acento) inset; }
+.paso-clave .paso-num { background: var(--acento); color: var(--fondo); }
+@media (min-width: 1100px) {
+  .flujo { grid-template-columns: repeat(5, 1fr); }
+  .paso:not(:last-child)::after { content: "\2192"; position: absolute; right: -13px; top: 50%; transform: translateY(-50%);
+                                  color: var(--acento); font-size: 18px; z-index: 1; }
+}
+

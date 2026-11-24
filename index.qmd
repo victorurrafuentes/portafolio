@@ -16,7 +16,7 @@ Los proyectos de riesgo de este sitio utilizan **datos simulados o públicos**; 
 
 ::: {.proyecto}
 ### [Seguimiento de recupero de cartera castigada](recupero.qmd)
-Un modelo de probabilidad de pago a 90 días en BigQuery ML y su monitoreo mensual: recuperación frente al periodo base, estabilidad de variables (PSI) y poder del modelo (Gini, KS). La página es un reporte que se genera solo a partir de los datos.
+Un Random Forest en BigQuery ML, con búsqueda aleatoria de hiperparámetros, que estima la probabilidad de pago a 90 días, y su monitoreo mensual: recuperación frente al periodo base, estabilidad de variables (PSI) y poder del modelo (Gini, KS). La página es un reporte que se genera solo a partir de los datos.
 :::
 
 ::: {.proyecto}
