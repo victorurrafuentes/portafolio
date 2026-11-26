@@ -7,11 +7,18 @@
     "text": "Datos simulados\nEste reporte compara M21 (seguimiento) con el periodo base de entrenamiento. Se genera con un comando; para otro mes basta cambiar REPORTE_MES."
   },
   {
+    "objectID": "recupero.html#objetivo-de-negocio",
+    "href": "recupero.html#objetivo-de-negocio",
+    "title": "Seguimiento de recupero de cartera castigada",
+    "section": "Objetivo de negocio",
+    "text": "Objetivo de negocio\nEl modelo ordena las cuentas castigadas en veintiles según su probabilidad de pago, o según la probabilidad por monto de deuda. Ese orden permite priorizar y organizar la gestión de cobranza: concentrar el esfuerzo donde es más probable recuperar y, con ello, optimizar el recupero.\nPor eso el valor del modelo está en su capacidad de ordenar bien, y el monitoreo mensual (estabilidad de variables, Gini y KS) vigila que ese orden se mantenga. Si se deteriora, la priorización pierde efectividad."
+  },
+  {
     "objectID": "recupero.html#flujo-de-trabajo",
     "href": "recupero.html#flujo-de-trabajo",
     "title": "Seguimiento de recupero de cartera castigada",
     "section": "Flujo de trabajo",
-    "text": "Flujo de trabajo\nDel dato al monitoreo, con cada etapa reproducible y escrita en código. La etapa central es el ajuste del Random Forest mediante búsqueda aleatoria de hiperparámetros.\n\n  \n    1\n    Datos\n    Tablón por cuenta y mes. Entrenamiento con el periodo base (M01–M12) y validación fuera de tiempo (M13–M15).\n  \n  \n    2\n    Entrenamiento\n    Random Forest en BigQuery ML con búsqueda aleatoria: 20 pruebas, 4 en paralelo, optimizando ROC AUC sobre 5 hiperparámetros. Ajuste automático por desbalance de clases.\n  \n  \n    3\n    Evaluación\n    Métricas sobre el periodo de validación, que el modelo no vio, e importancia global de las variables.\n  \n  \n    4\n    Scoring mensual\n    Validación previa del mes y escritura dentro de una transacción: se puede repetir sin duplicar filas. Salida en veintiles.\n  \n  \n    5\n    Monitoreo y reporte\n    PSI por variable, Gini y curva ROC por mes. Esta página se genera sola con un comando.\n  \n\nEl código de las etapas 2 a 4 está en 01_entrenar_modelo.sql y 02_scoring_mensual.sql."
+    "text": "Flujo de trabajo\nDel dato al monitoreo, con cada etapa reproducible y escrita en código. La etapa central es el ajuste del Random Forest mediante búsqueda aleatoria de hiperparámetros.\n\n  \n    1\n    Datos\n    Tablón por cuenta y mes. Entrenamiento con el periodo base (M01–M12) y validación fuera de tiempo (M13–M15).\n  \n  \n    2\n    Entrenamiento\n    Random Forest en BigQuery ML con búsqueda aleatoria: 20 pruebas, 4 en paralelo, optimizando ROC AUC sobre 5 hiperparámetros. Ajuste automático por desbalance de clases.\n  \n  \n    3\n    Evaluación\n    Métricas sobre el periodo de validación, que el modelo no vio, e importancia global de las variables.\n  \n  \n    4\n    Scoring mensual\n    Validación previa del mes y escritura dentro de una transacción: se puede repetir sin duplicar filas. Salida en veintiles para priorizar la cobranza.\n  \n  \n    5\n    Monitoreo y reporte\n    PSI por variable, Gini y curva ROC por mes. Esta página se genera sola con un comando.\n  \n\nEl código de las etapas 2 a 4 está en 01_entrenar_modelo.sql y 02_scoring_mensual.sql."
   },
   {
     "objectID": "recupero.html#ventajas-de-esta-metodología",
@@ -46,7 +53,7 @@
     "href": "recupero.html#poder-del-modelo",
     "title": "Seguimiento de recupero de cartera castigada",
     "section": "Poder del modelo",
-    "text": "Poder del modelo\n\n\n\n\n\n\n\n\n\n\n\n\n\nTodos los datos de este reporte son simulados. El código de cálculo está en proyectos/recupero/app/R/calculos.R."
+    "text": "Poder del modelo\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMétricas calculadas con todas las cuentas de cada periodo. La fila resaltada es la línea base contra la que se compara el seguimiento.\n\n\nTodos los datos de este reporte son simulados. El código de cálculo está en proyectos/recupero/app/R/calculos.R."
   },
   {
     "objectID": "index.html",
