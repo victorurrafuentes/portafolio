@@ -198,3 +198,35 @@ agregado_base_modelo <- function(modelo) {
     dplyr::group_by(veintil_prob) |>
     dplyr::summarise(total = sum(total), pagadores = sum(pagadores), .groups = "drop")
 }
+
+# Resumen del poder del modelo por periodo, con los meses de cada periodo agrupados.
+# Si se indica un mes, se agrega una fila con ese mes (periodo = "MES").
+resumen_periodos <- function(modelo, mes_elegido = NULL) {
+  fila <- function(df, periodo, base = FALSE) {
+    etiquetas <- as.character(df$mes_label[order(df$mes_idx)])
+    primero <- etiquetas[1]
+    ultimo  <- etiquetas[length(etiquetas)]
+    agregado <- df |>
+      dplyr::group_by(veintil_prob) |>
+      dplyr::summarise(total = sum(total), pagadores = sum(pagadores), .groups = "drop")
+    dplyr::bind_cols(
+      tibble::tibble(
+        periodo = periodo,
+        meses   = if (primero == ultimo) primero else paste0(primero, " a ", ultimo),
+        base    = base
+      ),
+      metricas_roc(curva_roc(agregado))
+    )
+  }
+
+  filas <- lapply(c("ENTRENAMIENTO", "VALIDACION", "SEGUIMIENTO"), function(p) {
+    fila(dplyr::filter(modelo, periodo == p), p, base = (p == "ENTRENAMIENTO"))
+  })
+  if (!is.null(mes_elegido)) {
+    filas <- c(filas, list(fila(dplyr::filter(modelo, mes_label == mes_elegido), "MES")))
+  }
+
+  tabla <- dplyr::bind_rows(filas)
+  tabla$dif_gini <- tabla$gini - tabla$gini[tabla$base]
+  tabla
+}

@@ -165,6 +165,30 @@ tabla_metricas <- function(metricas) {
     barra("Gini", d$Gini)
 }
 
+tabla_resumen_periodos <- function(resumen) {
+  nombres <- c(ENTRENAMIENTO = "Entrenamiento (línea base)", VALIDACION = "Validación",
+               SEGUIMIENTO = "Seguimiento", MES = "Mes analizado")
+  signo <- function(x) paste0(ifelse(x >= 0, "+", "−"), formatC(abs(x) * 100, format = "f", digits = 1, decimal.mark = ","))
+
+  d <- resumen |>
+    dplyr::transmute(
+      Periodo = unname(nombres[periodo]),
+      Meses   = meses,
+      AUC     = auc,
+      Gini    = gini,
+      KS      = ks / 100,
+      `Gini vs. base (pts)` = ifelse(base, "—", signo(dif_gini))
+    )
+
+  DT::datatable(d, rownames = FALSE, class = "compact", options = opciones_tabla) |>
+    DT::formatPercentage(c("AUC", "Gini", "KS"), digits = 1, dec.mark = ",") |>
+    DT::formatStyle(
+      names(d), valueColumns = "Periodo", target = "row",
+      backgroundColor = DT::styleEqual("Entrenamiento (línea base)", "rgba(164,135,255,.22)"),
+      fontWeight = DT::styleEqual("Entrenamiento (línea base)", "700")
+    )
+}
+
 tabla_distribucion <- function(dist) {
   d <- dist |>
     dplyr::mutate(serie = ifelse(serie == "Periodo base", "base", "mes")) |>

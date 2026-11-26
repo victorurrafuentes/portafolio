@@ -119,6 +119,8 @@ ui <- fluidPage(
         div(class = "panel", plotlyOutput("graf_roc", height = "360px")),
         div(class = "panel", plotlyOutput("graf_gini", height = "360px"))
       ),
+      div(class = "panel", h3("Resumen por periodo"), DTOutput("tabla_periodos"),
+          p(class = "nota", "Métricas con todas las cuentas de cada periodo. La fila resaltada es la línea base.")),
       div(class = "panel", h3("Métricas por mes"), DTOutput("tabla_metricas")),
       div(
         class = "rejilla-2",
@@ -182,6 +184,7 @@ server <- function(input, output, session) {
     grafico_gini_mensual(metricas_mensual, gini_base)
   })
 
+  output$tabla_periodos <- renderDT(tabla_resumen_periodos(resumen_periodos(datos$modelo, input$mes_modelo)))
   output$tabla_metricas <- renderDT(tabla_metricas(metricas_mensual))
   output$tabla_iv       <- renderDT(tabla_iv(iv_ks))
   output$tabla_ks       <- renderDT(tabla_ks_variable(iv_ks))

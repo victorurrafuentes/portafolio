@@ -103,9 +103,9 @@ grafico_roc <- function(roc_base, roc_mes, etiqueta_mes) {
       line = list(color = PAL$linea, width = 1.5, dash = "dash")
     ) |>
     plotly::add_lines(
-      data = roc_base, x = ~fpr, y = ~tpr, name = "Periodo base",
+      data = roc_base, x = ~fpr, y = ~tpr, name = "Línea base (entrenamiento)",
       line = list(color = PAL$base, width = 2.5, dash = "dot"),
-      hovertemplate = "FPR %{x:.1%} · TPR %{y:.1%}<extra>Periodo base</extra>"
+      hovertemplate = "FPR %{x:.1%} · TPR %{y:.1%}<extra>Línea base</extra>"
     ) |>
     plotly::add_lines(
       data = roc_mes, x = ~fpr, y = ~tpr, name = etiqueta_mes,
@@ -126,9 +126,9 @@ grafico_gini_mensual <- function(metricas, gini_base) {
     hovertemplate = "%{text}: %{y:.1%}<extra></extra>"
   ) |>
     plotly::add_lines(
-      x = range(metricas$mes_idx), y = c(gini_base, gini_base), name = "Promedio periodo base",
+      x = range(metricas$mes_idx), y = c(gini_base, gini_base), name = "Línea base (entrenamiento)",
       line = list(color = PAL$base, width = 2, dash = "dash"),
-      hovertemplate = "Promedio base: %{y:.1%}<extra></extra>", inherit = FALSE
+      hovertemplate = "Línea base: %{y:.1%}<extra></extra>", inherit = FALSE
     ) |>
     tema_plotly(
       "Gini por mes", NULL, "Gini",

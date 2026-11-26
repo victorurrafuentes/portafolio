@@ -52,6 +52,12 @@ lista <- function(x) if (length(x) == 0) "ninguna" else paste(x, collapse = ", "
 
 Este reporte compara **`r mes`** (`r tolower(periodo_mes)`) con el periodo base de entrenamiento. Se genera con un comando; para otro mes basta cambiar `REPORTE_MES`.
 
+## Objetivo de negocio
+
+El modelo ordena las cuentas castigadas en **veintiles** según su probabilidad de pago, o según la probabilidad por monto de deuda. Ese orden permite **priorizar y organizar la gestión de cobranza**: concentrar el esfuerzo donde es más probable recuperar y, con ello, **optimizar el recupero**.
+
+Por eso el valor del modelo está en su capacidad de ordenar bien, y el monitoreo mensual (estabilidad de variables, Gini y KS) vigila que ese orden se mantenga. Si se deteriora, la priorización pierde efectividad.
+
 ## Flujo de trabajo
 
 Del dato al monitoreo, con cada etapa reproducible y escrita en código. La etapa central es el ajuste del Random Forest mediante **búsqueda aleatoria de hiperparámetros**.
@@ -76,7 +82,7 @@ Del dato al monitoreo, con cada etapa reproducible y escrita en código. La etap
   <div class="paso">
     <div class="paso-num">4</div>
     <h4>Scoring mensual</h4>
-    <p>Validación previa del mes y escritura dentro de una transacción: se puede repetir sin duplicar filas. Salida en veintiles.</p>
+    <p>Validación previa del mes y escritura dentro de una transacción: se puede repetir sin duplicar filas. Salida en veintiles para priorizar la cobranza.</p>
   </div>
   <div class="paso">
     <div class="paso-num">5</div>
@@ -132,6 +138,14 @@ tabla_psi(psi)
 grafico_roc(roc_base, roc_mes, mes)
 grafico_gini_mensual(metricas, gini_base)
 ```
+
+```{r}
+tabla_resumen_periodos(resumen_periodos(datos$modelo, mes))
+```
+
+::: {.nota}
+Métricas calculadas con todas las cuentas de cada periodo. La fila resaltada es la línea base contra la que se compara el seguimiento.
+:::
 
 ::: {.nota}
 Todos los datos de este reporte son simulados. El código de cálculo está en `proyectos/recupero/app/R/calculos.R`.
