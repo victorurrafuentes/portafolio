@@ -1,7 +1,7 @@
 # ============================================================================
 # Seguimiento de recupero de cartera castigada (demo con datos simulados)
 # Panel Shiny con tres pestanas:
-#   1. Pagos y recuperacion por veintil
+#   1. Pagos y recupero por veintil
 #   2. Estabilidad de variables (PSI)
 #   3. Indicadores del modelo (ROC, Gini, KS, IV)
 #
@@ -58,16 +58,16 @@ ui <- fluidPage(
     class = "cabecera",
     span(class = "etiqueta", "Demo con datos simulados"),
     h1("Seguimiento de recupero de cartera castigada"),
-    p("Desempeño de un modelo de probabilidad de pago a 90 días: recuperación frente al periodo base,",
+    p("Desempeño de un modelo de probabilidad de pago a 90 días: recupero frente al periodo base,",
       "estabilidad de las variables y poder de discriminación mes a mes.")
   ),
 
   tabsetPanel(
     id = "pestanas", type = "pills",
 
-    # ---- 1. Pagos y recuperacion ----
+    # ---- 1. Pagos y recupero ----
     tabPanel(
-      "Pagos y recuperación",
+      "Pagos y recupero",
       div(
         class = "filtros",
         selector_mes("mes_pagos"),
@@ -140,7 +140,7 @@ ui <- fluidPage(
 
 server <- function(input, output, session) {
 
-  # ---- 1. Pagos y recuperacion ----
+  # ---- 1. Pagos y recupero ----
   agregado   <- reactive({ req(input$tramos); agregar_pagos(datos$pagos, input$base_veintil, input$tramos) })
   base_pagos <- reactive(linea_base_veintil(agregado()))
   totales    <- reactive(totales_mensuales(agregado()))

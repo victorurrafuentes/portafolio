@@ -5,7 +5,7 @@ Meses en índice relativo: M01 a M12 entrenamiento, M13 a M15 validación, M16 a
 Cada mes contiene 4.000 cuentas castigadas simuladas.
 
 ## seguimiento_pagos.csv
-Pagos y recuperación a 90 días por veintil. El veintil 20 agrupa a las cuentas con mayor puntaje.
+Pagos y recupero a 90 días por veintil. El veintil 20 agrupa a las cuentas con mayor puntaje.
 | Columna | Descripción |
 |---|---|
 | `mes_idx`, `mes_label`, `periodo` | Mes (1 a 21, "M01"...) y periodo (ENTRENAMIENTO, VALIDACION, SEGUIMIENTO) |

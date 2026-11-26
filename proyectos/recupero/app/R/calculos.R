@@ -27,7 +27,7 @@ leer_datos <- function(carpeta = "data") {
     lapply(function(df) dplyr::mutate(df, mes_label = factor(mes_label, levels = etiquetas)))
 }
 
-# ---- Pagos y recuperacion --------------------------------------------------
+# ---- Pagos y recupero --------------------------------------------------
 
 # Agrega la tabla de pagos para una base de veintil y un conjunto de tramos
 agregar_pagos <- function(pagos, base, tramos) {

@@ -9,7 +9,7 @@ Demo de un flujo de modelamiento y seguimiento: un modelo de probabilidad de pag
 | Pieza | Carpeta | Qué es |
 |---|---|---|
 | Modelo en BQML | `sql/` | SQL de referencia: entrenamiento de un Random Forest con búsqueda de hiperparámetros, evaluación, importancia global y scoring mensual idempotente. Se muestra para explicar el diseño; no se ejecuta aquí. |
-| Panel de seguimiento | `app/` | App Shiny de tres pestañas sobre datos simulados: pagos y recuperación por veintil, estabilidad de variables (PSI) e indicadores del modelo (ROC, Gini, KS, IV). |
+| Panel de seguimiento | `app/` | App Shiny de tres pestañas sobre datos simulados: pagos y recupero por veintil, estabilidad de variables (PSI) e indicadores del modelo (ROC, Gini, KS, IV). |
 | Datos simulados | `data/` | Tres tablas agregadas que alimentan el panel, con su diccionario. |
 | Pruebas | `pruebas/` | Script que ejecuta la capa de cálculo y exporta resultados para contrastarlos con una implementación independiente. |
 | Glosario | `docs/` | Nombres ficticios y definiciones de periodos, variables y objetos. |
@@ -23,7 +23,7 @@ Demo de un flujo de modelamiento y seguimiento: un modelo de probabilidad de pag
 
 ## Qué mide el panel
 
-1. **Pagos y recuperación:** tasa de pago y monto recuperado por veintil, contra el promedio mensual del periodo de entrenamiento.
+1. **Pagos y recupero:** tasa de pago y monto recuperado por veintil, contra el promedio mensual del periodo de entrenamiento.
 2. **Estabilidad de variables:** PSI por variable y mes (umbrales 0,10 y 0,25), y distribución por bin frente al periodo base.
 3. **Indicadores del modelo:** AUC, Gini y KS mensuales calculados desde los veintiles, e IV y KS por variable.
 

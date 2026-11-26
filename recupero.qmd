@@ -102,11 +102,11 @@ El código de las etapas 2 a 4 está en [`01_entrenar_modelo.sql`](https://githu
 htmltools::HTML(as.character(tarjetas_pagos(cmp, mes)))
 ```
 
-- **Recuperación:** el monto recuperado fue `r fmt_pct(cmp$razon_monto)` del promedio mensual base y la tasa de pago, `r fmt_pct(cmp$razon_pago)`.
+- **Recupero:** el monto recuperado fue `r fmt_pct(cmp$razon_monto)` del promedio mensual base y la tasa de pago, `r fmt_pct(cmp$razon_pago)`.
 - **Estabilidad:** variables con PSI sobre 0,25: **`r lista(rojas)`**. Entre 0,10 y 0,25: `r lista(ambar)`.
 - **Poder del modelo:** Gini de `r fmt_pct(gini_mes)` contra `r fmt_pct(gini_base)` del periodo base (`r sub(".", ",", sprintf("%+.1f", (gini_mes - gini_base) * 100), fixed = TRUE)` puntos).
 
-## Pagos y recuperación
+## Pagos y recupero
 
 ```{r}
 grafico_tasa_pago(base_v, filter(agregado, mes_label == mes), mes)

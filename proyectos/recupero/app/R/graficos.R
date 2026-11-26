@@ -16,7 +16,7 @@ separadores_periodo <- function(cortes = c(12.5, 15.5), etiquetas = c("ValidaciÃ
   list(shapes = lineas, annotations = textos)
 }
 
-# ---- Pagos y recuperacion --------------------------------------------------
+# ---- Pagos y recupero --------------------------------------------------
 
 grafico_tasa_pago <- function(base, mes_df, etiqueta_mes) {
   plotly::plot_ly() |>
