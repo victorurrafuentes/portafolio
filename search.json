@@ -25,14 +25,14 @@
     "href": "recupero.html#resumen",
     "title": "Seguimiento de recupero de cartera castigada",
     "section": "Resumen",
-    "text": "Resumen\n\n\n\n  \n    Monto recuperado, M21\n    78,3 MM\n    99,5% del promedio base (78,7 MM)\n  \n  \n    Tasa de pago, M21\n    9,7%\n    95,1% del promedio base (10,2%)\n  \n  \n    Recuperado / deuda, M21\n    2,70%\n    102,0% del promedio base (2,64%)\n  \n\n\n\n\nRecuperación: el monto recuperado fue 99,5% del promedio mensual base y la tasa de pago, 95,1%.\nEstabilidad: variables con PSI sobre 0,25: ext_03. Entre 0,10 y 0,25: ext_02, mor_01.\nPoder del modelo: Gini de 47,2% contra 53,4% del periodo base (-6,2 puntos)."
+    "text": "Resumen\n\n\n\n  \n    Monto recuperado, M21\n    78,3 MM\n    99,5% del promedio base (78,7 MM)\n  \n  \n    Tasa de pago, M21\n    9,7%\n    95,1% del promedio base (10,2%)\n  \n  \n    Recuperado / deuda, M21\n    2,70%\n    102,0% del promedio base (2,64%)\n  \n\n\n\n\nRecupero: el monto recuperado fue 99,5% del promedio mensual base y la tasa de pago, 95,1%.\nEstabilidad: variables con PSI sobre 0,25: ext_03. Entre 0,10 y 0,25: ext_02, mor_01.\nPoder del modelo: Gini de 47,2% contra 53,4% del periodo base (-6,2 puntos)."
   },
   {
-    "objectID": "recupero.html#pagos-y-recuperación",
-    "href": "recupero.html#pagos-y-recuperación",
+    "objectID": "recupero.html#pagos-y-recupero",
+    "href": "recupero.html#pagos-y-recupero",
     "title": "Seguimiento de recupero de cartera castigada",
-    "section": "Pagos y recuperación",
-    "text": "Pagos y recuperación"
+    "section": "Pagos y recupero",
+    "text": "Pagos y recupero"
   },
   {
     "objectID": "recupero.html#estabilidad-de-variables",
@@ -60,7 +60,7 @@
     "href": "index.html#proyectos",
     "title": "Víctor Urra Fuentes",
     "section": "Proyectos",
-    "text": "Proyectos\n\nSeguimiento de recupero de cartera castigada\nUn Random Forest en BigQuery ML, con búsqueda aleatoria de hiperparámetros, que estima la probabilidad de pago a 90 días, y su monitoreo mensual: recuperación frente al periodo base, estabilidad de variables (PSI) y poder del modelo (Gini, KS). La página es un reporte que se genera solo a partir de los datos.\n\n\nScorecard de originación\nComparación de un scorecard logístico con un modelo de gradient boosting sobre datos públicos. En preparación."
+    "text": "Proyectos\n\nSeguimiento de recupero de cartera castigada\nUn Random Forest en BigQuery ML, con búsqueda aleatoria de hiperparámetros, que estima la probabilidad de pago a 90 días, y su monitoreo mensual: recupero frente al periodo base, estabilidad de variables (PSI) y poder del modelo (Gini, KS). La página es un reporte que se genera solo a partir de los datos.\n\n\nScorecard de originación\nComparación de un scorecard logístico con un modelo de gradient boosting sobre datos públicos. En preparación."
   },
   {
     "objectID": "index.html#proyectos-personales",
